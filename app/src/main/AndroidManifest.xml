@@ -17,10 +17,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBLM3d_Jp_DIX8bjMbOzff1XW3yReAnYzo" />
-
         <activity
             android:name=".UsersListActivity"
             android:exported="false" />
@@ -36,6 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/my_app_api_key" />
     </application>
 
 </manifest>

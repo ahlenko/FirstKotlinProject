@@ -1,4 +1,4 @@
-package com.mycompany.testtask.usersdata
+package com.mycompany.testtask.sharedprp
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -8,8 +8,12 @@ import com.google.gson.reflect.TypeToken
 import com.mycompany.testtask.data.User
 
 class UserList(context: Context) {
+    private val SHARED_PRF_NAME : String = "UserListPrefs"
+    private val PRF_NAME : String = "userList"
+
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("UserListPrefs", Context.MODE_PRIVATE)
+        context.getSharedPreferences(SHARED_PRF_NAME, Context.MODE_PRIVATE)
+
     private val gson = Gson()
 
     private val userList: MutableList<User> by lazy {
@@ -29,19 +33,19 @@ class UserList(context: Context) {
         return userList[num]
     }
 
-    private fun saveUserList() {
-        sharedPreferences.edit().apply {
-            val json = gson.toJson(userList)
-            putString("userList", json)
-        }.apply()
-    }
-
-    public fun clearUserList() {
+    fun clearUserList() {
         sharedPreferences.edit().clear().apply()
     }
 
+    private fun saveUserList() {
+        sharedPreferences.edit().apply {
+            val json = gson.toJson(userList)
+            putString(PRF_NAME, json)
+        }.apply()
+    }
+
     private fun loadUserList(): MutableList<User> {
-        val json = sharedPreferences.getString("userList", "")
+        val json = sharedPreferences.getString(PRF_NAME, "")
         return try {
             if (json.isNullOrEmpty()) {
                 mutableListOf()

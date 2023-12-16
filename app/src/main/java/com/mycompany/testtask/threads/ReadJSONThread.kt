@@ -1,27 +1,17 @@
 package com.mycompany.testtask.threads
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
-import android.os.Handler
-import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import com.mycompany.testtask.R
-import com.mycompany.testtask.SplashScreenActivity
 import com.mycompany.testtask.data.Adress
 import com.mycompany.testtask.data.Company
 import com.mycompany.testtask.data.Geo
 import com.mycompany.testtask.data.User
-import com.mycompany.testtask.usersdata.UserList
-import com.squareup.picasso.Picasso
+import com.mycompany.testtask.sharedprp.UserList
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.atomic.AtomicReference
 
 class ReadJSONThread(link : String, context: Context) : Thread() {
     val KEY_ID = "id"

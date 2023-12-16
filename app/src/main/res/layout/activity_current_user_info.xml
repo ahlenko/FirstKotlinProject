@@ -140,26 +140,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleName" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/AdressMapView"
+
+    <WebView
+        android:id="@+id/WebSiteView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/buttonClose"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonAdress" />
+        app:layout_constraintTop_toTopOf="@+id/buttonSite" />
 
-    <WebView
-        android:id="@+id/WebSiteView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AdressMapViewLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/AdressMapView"
-        app:layout_constraintEnd_toEndOf="@+id/AdressMapView"
-        app:layout_constraintStart_toStartOf="@+id/AdressMapView"
-        app:layout_constraintTop_toTopOf="@+id/buttonSite" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonAdress">
+
+        <fragment
+            android:id="@+id/AdressMapView"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
