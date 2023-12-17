@@ -2,7 +2,7 @@
     <string name="app_name">TestTaskKT</string>
 
     <string name="prob_internet_connection_cached">Інтернет підключення відсутнє, відображено кешовані дані</string>
-    <string name="prob_user_data_non_avalible">Помилка. Дані для користувача недоступні</string>
+    <string name="prob_user_data_non_avalible">Помилка. Дані про користувача недоступні</string>
     <string name="prob_send_email_app">Помилка. Додаток для надсилання email відсутній</string>
     <string name="prob_dial_app">Помилка. Додаток для виконання дзвінка відсутній</string>
     <string name="prob_internet_connection">Помилка, Інтернет підключення відсутнє</string>

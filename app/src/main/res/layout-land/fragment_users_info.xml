@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/noUserSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Оберіть користувача для відображення даних"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/content" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserInfo">
+
+        <TextView
+            android:id="@+id/TitleEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Email"
+            app:layout_constraintStart_toStartOf="@+id/TitlePhone"
+            app:layout_constraintTop_toBottomOf="@+id/TitlePhone" />
+
+        <TextView
+            android:id="@+id/TitleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/UserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="Name Surname"
+            app:layout_constraintBottom_toBottomOf="@+id/TitleName"
+            app:layout_constraintEnd_toStartOf="@+id/centralLine"
+            app:layout_constraintTop_toTopOf="@+id/TitleName" />
+
+        <Button
+            android:id="@+id/buttonEmail"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test@testmail.com"
+            app:layout_constraintBottom_toBottomOf="@+id/TitleEmail"
+            app:layout_constraintEnd_toStartOf="@+id/centralLine"
+            app:layout_constraintTop_toTopOf="@+id/TitleEmail" />
+
+        <Button
+            android:id="@+id/buttonPhone"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+30645434633"
+            app:layout_constraintBottom_toBottomOf="@+id/TitlePhone"
+            app:layout_constraintEnd_toStartOf="@+id/centralLine"
+            app:layout_constraintTop_toTopOf="@+id/TitlePhone" />
+
+        <Button
+            android:id="@+id/buttonBack"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="Button"
+            android:text="Назад"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonClose"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Приховати"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/buttonSite"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="www.site.com"
+            app:layout_constraintBottom_toBottomOf="@+id/TitleSite"
+            app:layout_constraintEnd_toStartOf="@+id/centralLine"
+            app:layout_constraintTop_toTopOf="@+id/TitleSite" />
+
+        <Button
+            android:id="@+id/buttonAdress"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Street, Adress"
+            android:textAlignment="textEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/TitleAdress"
+            app:layout_constraintEnd_toStartOf="@+id/centralLine"
+            app:layout_constraintStart_toEndOf="@+id/TitleAdress"
+            app:layout_constraintTop_toTopOf="@+id/TitleAdress" />
+
+        <TextView
+            android:id="@+id/TitleSite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Website"
+            app:layout_constraintStart_toStartOf="@+id/TitleEmail"
+            app:layout_constraintTop_toBottomOf="@+id/TitleEmail" />
+
+        <TextView
+            android:id="@+id/TitleAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="UserAdress"
+            app:layout_constraintStart_toStartOf="@+id/TitleSite"
+            app:layout_constraintTop_toBottomOf="@+id/TitleSite" />
+
+        <TextView
+            android:id="@+id/TitlePhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Phone"
+            app:layout_constraintStart_toStartOf="@+id/TitleName"
+            app:layout_constraintTop_toBottomOf="@+id/TitleName" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/centralLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1" />
+
+        <WebView
+            android:id="@+id/WebSiteView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/buttonClose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/centralLine"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </WebView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/AdressMapViewLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/WebSiteView"
+            app:layout_constraintEnd_toEndOf="@+id/WebSiteView"
+            app:layout_constraintStart_toEndOf="@+id/buttonEmail"
+            app:layout_constraintTop_toTopOf="@+id/WebSiteView">
+
+            <fragment
+                android:id="@+id/AdressMapView"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/UserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Дані користувача"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
