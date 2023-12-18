@@ -22,16 +22,11 @@ import com.squareup.picasso.Picasso
 
 class UserListFragment : Fragment() {
 
-    private val LINK_URL: String = "http://jsonplaceholder.typicode.com/users"
-    private val IMAGE_URL: String = "https://quizee.app/storage/avatars/"
-
-    private val IMG_TYPE = ".jpeg"
-
     private lateinit var binding: FragmentUsersListBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUsersListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -52,37 +47,36 @@ class UserListFragment : Fragment() {
         val listOfUser = UserList(requireActivity().baseContext)
         val dasCashed = DasCashed(requireActivity().baseContext)
 
-        val userPrintThread : Thread = Thread {
+        val userPrintThread = Thread {
             val users : List<User> = listOfUser.getUserListAsList()
             for (user: User in users){
                 val userBinding: ViewFragmentUserBinding =
                     ViewFragmentUserBinding.inflate(layoutInflater)
                 userBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    resources.getDimensionPixelSize(R.dimen.height_90dp))
-                userBinding.userName.text = user.name
-                userBinding.userEmail.text = user.email
-                userBinding.userInfo.text = user.company.catchPhrase
-                userBinding.userInfo.apply {
-                    setSingleLine(true)
+                    ViewGroup.LayoutParams.MATCH_PARENT, resources.getDimensionPixelSize(R.dimen.height_90dp))
+                userBinding.userNameView.text = user.name
+                userBinding.userEmailView.text = user.email
+                userBinding.userAddInfoView.text = user.company.catchPhrase
+                userBinding.userAddInfoView.apply {
+                    isSingleLine = true
                     ellipsize = TextUtils.TruncateAt.END
                 }
-                userBinding.toThreeScreen.id = user.id+1
-                userBinding.toThreeScreen.setOnClickListener(onItemClickListener)
+                userBinding.toUserInfoButton.id = user.id+1
+                userBinding.toUserInfoButton.setOnClickListener(onItemClickListener)
 
-                val avatarUrl : String = IMAGE_URL + user.id + IMG_TYPE;
-                requireActivity().runOnUiThread { Picasso.get().load(avatarUrl).transform(CircleTransformation()).into(userBinding.userAvatar) }
+                val avatarUrl : String = IMAGE_URL + user.id + IMG_TYPE
+                requireActivity().runOnUiThread { Picasso.get().load(avatarUrl).transform(CircleTransformation()).into(userBinding.userAvatarView) }
                 userList.add(userBinding)
             }
-            requireActivity().runOnUiThread(Runnable {
-                if (!userList.isEmpty()){
+            requireActivity().runOnUiThread {
+                if (userList.isNotEmpty()) {
                     for (userView: ViewFragmentUserBinding in userList)
-                        binding.UserContainer.addView(userView.root)
+                        binding.usersShownLinearContainer.addView(userView.root)
                 } else {
-                    binding.UserNotInListTitle.visibility = View.VISIBLE
-                    binding.UserNotInListTitle.text = getString(R.string.list_is_empty)
+                    binding.userListEmptyTitle.visibility = View.VISIBLE
+                    binding.userListEmptyTitle.text = getString(R.string.list_is_empty)
                 }
-            })
+            }
         }
 
         if (!isInternetAvailable(requireActivity().baseContext)){
@@ -92,7 +86,7 @@ class UserListFragment : Fragment() {
                 userPrintThread.join()
             } else Toast.makeText(requireActivity().baseContext, R.string.prob_internet_connection, Toast.LENGTH_SHORT).show()
         } else if (isInternetAvailable(requireActivity().baseContext)) {
-            val readUser: ReadJSONThread = ReadJSONThread(LINK_URL, requireActivity().baseContext)
+            val readUser = ReadJSONThread(LINK_URL, requireActivity().baseContext)
             listOfUser.clearUserList()
             readUser.start()
             readUser.join()
@@ -108,4 +102,9 @@ class UserListFragment : Fragment() {
         return networkInfo?.isConnected == true
     }
 
+    companion object{
+        const val LINK_URL: String = "http://jsonplaceholder.typicode.com/users"
+        const val IMAGE_URL: String = "https://quizee.app/storage/avatars/"
+        const val IMG_TYPE = ".jpeg"
+    }
 }

@@ -6,71 +6,71 @@
     android:layout_height="100dp">
 
     <ImageButton
-        android:id="@+id/toThreeScreen"
+        android:id="@+id/to_user_info_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/to_user_info_button_description" />
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/user_name_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Name FamelyName"
-        app:layout_constraintBottom_toTopOf="@+id/userEmail"
+        android:text="@string/user_name_sample"
+        app:layout_constraintBottom_toTopOf="@+id/user_email_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/userAvatar"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_view"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/userEmail"
+        android:id="@+id/user_email_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="test@testmail.com"
+        android:text="@string/user_email_sample"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/toThreeScreen"
-        app:layout_constraintStart_toEndOf="@+id/userAvatar"
+        app:layout_constraintEnd_toEndOf="@+id/to_user_info_button"
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_view"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/userInfo"
+        android:id="@+id/user_add_info_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="No Info About This User"
+        android:text="@string/info_about_user_sample"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/userAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+        app:layout_constraintStart_toEndOf="@+id/user_avatar_view"
+        app:layout_constraintTop_toBottomOf="@+id/user_email_view" />
 
     <ImageView
-        android:id="@+id/userAvatar"
+        android:id="@+id/user_avatar_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/avatar_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/user_avatar_image_description" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/avatar_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.23" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

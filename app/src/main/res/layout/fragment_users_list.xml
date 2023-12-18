@@ -5,28 +5,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/UserNotInListTitle"
+        android:id="@+id/user_list_empty_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UserNotInList"
+        android:text="@string/users_list_is_empty"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/ScrollUsers"
+        app:layout_constraintEnd_toEndOf="@+id/users_shown_scroll"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ScrollUsers" />
+        app:layout_constraintTop_toTopOf="@+id/users_shown_scroll" />
 
     <TextView
-        android:id="@+id/TitleUsers"
+        android:id="@+id/users_list_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Користувачі"
+        android:text="@string/users_list_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/ScrollUsers"
+        android:id="@+id/users_shown_scroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
@@ -34,11 +34,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleUsers"
+        app:layout_constraintTop_toBottomOf="@+id/users_list_title"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:id="@+id/UserContainer"
+            android:id="@+id/users_shown_linear_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />

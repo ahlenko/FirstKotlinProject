@@ -3,7 +3,6 @@ package com.mycompany.testtask.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,10 +32,11 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
     private lateinit var binding : FragmentUsersInfoBinding
 
     private lateinit var listOfUser : UserList
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUsersInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -45,20 +45,21 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         listOfUser = UserList(requireActivity().baseContext)
         if (userID == -1) {
-            binding.content.visibility  = View.INVISIBLE
+            binding.screenContentLayout.visibility  = View.INVISIBLE
             Toast.makeText(requireActivity().baseContext, R.string.prob_user_data_non_avalible, Toast.LENGTH_SHORT).show()
             if (fragmentTypeIsActivity) requireActivity().finish()
         } else if (userID == -2) {
-            binding.content.visibility  = View.INVISIBLE
-            binding.noUserSelect.visibility = View.VISIBLE
+            binding.screenContentLayout.visibility  = View.INVISIBLE
+            binding.ifUserNoSelectedTitle.visibility = View.VISIBLE
         } else {
-            if (!fragmentTypeIsActivity) binding.buttonBack.visibility = View.INVISIBLE
+            if (!fragmentTypeIsActivity) binding.backButton.visibility = View.INVISIBLE
             user = listOfUser.getCurUser(userID)
             initializeUserInfo()
             val mapFragment  = SupportMapFragment.newInstance()
-            requireActivity().supportFragmentManager.beginTransaction().add(R.id.AdressMapView, mapFragment).commit()
+            requireActivity().supportFragmentManager.beginTransaction().add(R.id.map_view_element, mapFragment).commit()
             mapFragment.getMapAsync(this)
         }
+        binding.backButton.setOnClickListener { requireActivity().finish() }
     }
 
     fun setFragmentTypeIsActivity(type: Boolean) {
@@ -71,13 +72,13 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
 
     private fun initializeUserInfo() {
         val adr: String = user.address.city + ", " + user.address.street + ", " + user.address.suite
-        binding.UserName.text = user.name
-        binding.buttonAdress.text = adr
-        binding.buttonEmail.text = user.email
-        binding.buttonPhone.text = user.phone
-        binding.buttonSite.text = user.website
+        binding.userNameView.text = user.name
+        binding.showMapButton.text = adr
+        binding.userEmailViewButton.text = user.email
+        binding.userPhoneViewButton.text = user.phone
+        binding.showWebButton.text = user.website
 
-        binding.buttonEmail.setOnClickListener {
+        binding.userEmailViewButton.setOnClickListener {
             val email = user.email
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:$email")
@@ -88,7 +89,7 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
             else Toast.makeText(requireActivity().baseContext, R.string.prob_send_email_app, Toast.LENGTH_SHORT).show()
         }
 
-        binding.buttonPhone.setOnClickListener {
+        binding.userPhoneViewButton.setOnClickListener {
             val phone = user.phone
             val intent = Intent(Intent.ACTION_DIAL)
             intent.data = Uri.parse("tel:$phone")
@@ -97,31 +98,29 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
             else Toast.makeText(requireActivity().baseContext, R.string.prob_dial_app, Toast.LENGTH_SHORT).show()
         }
 
-        binding.buttonSite.setOnClickListener {
+        binding.showWebButton.setOnClickListener {
             if (openViewID.toInt() != 0) closeView()
             openViewID = 2
             val siteURL = user.website
             if (!fragmentTypeIsActivity) {
                 binding.centralLine.setGuidelinePercent(0.5F)
-                binding.TitleAdress.visibility = View.INVISIBLE
             }
-            binding.WebSiteView.visibility = View.VISIBLE
-            binding.buttonClose.visibility = View.VISIBLE
-            binding.WebSiteView.loadUrl(siteURL)
+            binding.webSiteViewElement.visibility = View.VISIBLE
+            binding.closeMapOrWebButton.visibility = View.VISIBLE
+            binding.webSiteViewElement.loadUrl(siteURL)
         }
 
-        binding.buttonAdress.setOnClickListener {
+        binding.showMapButton.setOnClickListener {
             if (openViewID.toInt() != 0) closeView()
             openViewID = 1
             if (!fragmentTypeIsActivity) {
                 binding.centralLine.setGuidelinePercent(0.5F)
-                binding.TitleAdress.visibility = View.INVISIBLE
             }
-            binding.AdressMapViewLayout.visibility = View.VISIBLE
-            binding.buttonClose.visibility = View.VISIBLE
+            binding.mapViewWrapper.visibility = View.VISIBLE
+            binding.closeMapOrWebButton.visibility = View.VISIBLE
         }
 
-        binding.buttonClose.setOnClickListener {
+        binding.closeMapOrWebButton.setOnClickListener {
             closeView()
         }
     }
@@ -129,14 +128,13 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
     private fun closeView() {
         if (!fragmentTypeIsActivity) {
             binding.centralLine.setGuidelinePercent(1F)
-            binding.TitleAdress.visibility = View.INVISIBLE
         }
         if (openViewID.toInt() == 1){
-            binding.AdressMapViewLayout.visibility = View.INVISIBLE
-            binding.buttonClose.visibility = View.INVISIBLE
+            binding.mapViewWrapper.visibility = View.INVISIBLE
+            binding.closeMapOrWebButton.visibility = View.INVISIBLE
         } else if (openViewID.toInt() == 2){
-            binding.WebSiteView.visibility = View.INVISIBLE
-            binding.buttonClose.visibility = View.INVISIBLE
+            binding.webSiteViewElement.visibility = View.INVISIBLE
+            binding.closeMapOrWebButton.visibility = View.INVISIBLE
         }
     }
 

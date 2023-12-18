@@ -1,10 +1,8 @@
 package com.mycompany.testtask
 
-import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.mycompany.testtask.databinding.ActivityUsersListBinding
@@ -14,23 +12,18 @@ import com.mycompany.testtask.fragments.UserListFragment
 class UsersListActivity : AppCompatActivity() {
     private lateinit var binding : ActivityUsersListBinding
 
-    private val KEY_URER_ID = "user_id"
-
-
-
-    val buttonToInfoScreen = View.OnClickListener { v ->
+    private val buttonToInfoScreen = View.OnClickListener { v ->
         val nextIntent = Intent(
             this@UsersListActivity,
             CurrentUserInfoActivity::class.java )
         val bundle = Bundle()
         val userID = v.id - 1
-        bundle.putInt("user_id", userID)
-        bundle.putInt(KEY_URER_ID, userID)
+        bundle.putInt(KEY_USER_ID, userID)
         nextIntent.putExtras(bundle)
         startActivity(nextIntent)
     }
 
-    val buttonShowUserInfo = View.OnClickListener { v ->
+    private val buttonShowUserInfo = View.OnClickListener { v ->
         val userID = v.id - 1
         val infoFragment = CurrentUserInfoFragment()
         infoFragment.setPrintedUserID(userID-1)
@@ -60,10 +53,10 @@ class UsersListActivity : AppCompatActivity() {
                 val listFragment = UserListFragment()
                 listFragment.setOnClickListener(buttonToInfoScreen)
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, listFragment)
+                    .replace(R.id.fragment_container_main, listFragment)
                     .commit()
 
-                binding.fragmentContainer.visibility = View.VISIBLE
+                binding.fragmentContainerMain.visibility = View.VISIBLE
                 binding.fragmentContainerLeft.visibility = View.GONE
                 binding.fragmentContainerRight.visibility = View.GONE
             }
@@ -76,13 +69,16 @@ class UsersListActivity : AppCompatActivity() {
                     .replace(R.id.fragment_container_right, infoFragment)
                     .commit()
 
-                binding.fragmentContainer.visibility = View.GONE
+                binding.fragmentContainerMain.visibility = View.GONE
                 binding.fragmentContainerLeft.visibility = View.VISIBLE
                 binding.fragmentContainerRight.visibility = View.VISIBLE
             }
         }
     }
 
+    companion object{
+        const val KEY_USER_ID = "user_id"
+    }
 }
 
 

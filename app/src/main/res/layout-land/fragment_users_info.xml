@@ -6,148 +6,148 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/noUserSelect"
+        android:id="@+id/if_user_no_selected_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Оберіть користувача для відображення даних"
+        android:text="@string/chose_a_user_to_show_data"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/content"
+        app:layout_constraintEnd_toEndOf="@+id/screen_content_layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/content" />
+        app:layout_constraintTop_toTopOf="@+id/screen_content_layout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/content"
+        android:id="@+id/screen_content_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserInfo">
+        app:layout_constraintTop_toBottomOf="@+id/user_info_title">
 
         <TextView
-            android:id="@+id/TitleEmail"
+            android:id="@+id/email_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Email"
-            app:layout_constraintStart_toStartOf="@+id/TitlePhone"
-            app:layout_constraintTop_toBottomOf="@+id/TitlePhone" />
+            android:text="@string/email_title"
+            app:layout_constraintStart_toStartOf="@+id/phone_title"
+            app:layout_constraintTop_toBottomOf="@+id/phone_title" />
 
         <TextView
-            android:id="@+id/TitleName"
+            android:id="@+id/name_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="Name"
+            android:text="@string/name_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/UserName"
+            android:id="@+id/user_name_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:text="Name Surname"
-            app:layout_constraintBottom_toBottomOf="@+id/TitleName"
+            android:text="@string/user_name_sample"
+            app:layout_constraintBottom_toBottomOf="@+id/name_title"
             app:layout_constraintEnd_toStartOf="@+id/centralLine"
-            app:layout_constraintTop_toTopOf="@+id/TitleName" />
+            app:layout_constraintTop_toTopOf="@+id/name_title" />
 
         <Button
-            android:id="@+id/buttonEmail"
+            android:id="@+id/user_email_view_button"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test@testmail.com"
-            app:layout_constraintBottom_toBottomOf="@+id/TitleEmail"
+            android:text="@string/user_email_sample"
+            app:layout_constraintBottom_toBottomOf="@+id/email_title"
             app:layout_constraintEnd_toStartOf="@+id/centralLine"
-            app:layout_constraintTop_toTopOf="@+id/TitleEmail" />
+            app:layout_constraintTop_toTopOf="@+id/email_title" />
 
         <Button
-            android:id="@+id/buttonPhone"
+            android:id="@+id/user_phone_view_button"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+30645434633"
-            app:layout_constraintBottom_toBottomOf="@+id/TitlePhone"
+            android:text="@string/phone_sample"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_title"
             app:layout_constraintEnd_toStartOf="@+id/centralLine"
-            app:layout_constraintTop_toTopOf="@+id/TitlePhone" />
+            app:layout_constraintTop_toTopOf="@+id/phone_title" />
 
         <Button
-            android:id="@+id/buttonBack"
+            android:id="@+id/back_button"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
-            android:onClick="Button"
-            android:text="Назад"
+            android:text="@string/back_text_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="UsingOnClickInXml" />
 
         <Button
-            android:id="@+id/buttonClose"
+            android:id="@+id/close_map_or_web_button"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Приховати"
+            android:text="@string/unshow_text_button"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/buttonSite"
+            android:id="@+id/show_web_button"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="www.site.com"
-            app:layout_constraintBottom_toBottomOf="@+id/TitleSite"
+            android:text="@string/website_sample"
+            app:layout_constraintBottom_toBottomOf="@+id/site_title"
             app:layout_constraintEnd_toStartOf="@+id/centralLine"
-            app:layout_constraintTop_toTopOf="@+id/TitleSite" />
+            app:layout_constraintTop_toTopOf="@+id/site_title" />
 
         <Button
-            android:id="@+id/buttonAdress"
+            android:id="@+id/show_map_button"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Street, Adress"
+            android:text="@string/user_address_sample"
             android:textAlignment="textEnd"
-            app:layout_constraintBottom_toBottomOf="@+id/TitleAdress"
+            app:layout_constraintBottom_toBottomOf="@+id/address_title"
             app:layout_constraintEnd_toStartOf="@+id/centralLine"
-            app:layout_constraintStart_toEndOf="@+id/TitleAdress"
-            app:layout_constraintTop_toTopOf="@+id/TitleAdress" />
+            app:layout_constraintStart_toEndOf="@+id/address_title"
+            app:layout_constraintTop_toTopOf="@+id/address_title" />
 
         <TextView
-            android:id="@+id/TitleSite"
+            android:id="@+id/site_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Website"
-            app:layout_constraintStart_toStartOf="@+id/TitleEmail"
-            app:layout_constraintTop_toBottomOf="@+id/TitleEmail" />
+            android:text="@string/website_title"
+            app:layout_constraintStart_toStartOf="@+id/email_title"
+            app:layout_constraintTop_toBottomOf="@+id/email_title" />
 
         <TextView
-            android:id="@+id/TitleAdress"
+            android:id="@+id/address_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="UserAdress"
-            app:layout_constraintStart_toStartOf="@+id/TitleSite"
-            app:layout_constraintTop_toBottomOf="@+id/TitleSite" />
+            android:text="@string/user_address_title"
+            app:layout_constraintStart_toStartOf="@+id/site_title"
+            app:layout_constraintTop_toBottomOf="@+id/site_title" />
 
         <TextView
-            android:id="@+id/TitlePhone"
+            android:id="@+id/phone_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Phone"
-            app:layout_constraintStart_toStartOf="@+id/TitleName"
-            app:layout_constraintTop_toBottomOf="@+id/TitleName" />
+            android:text="@string/phone_title"
+            app:layout_constraintStart_toStartOf="@+id/name_title"
+            app:layout_constraintTop_toBottomOf="@+id/name_title" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/centralLine"
@@ -157,33 +157,32 @@
             app:layout_constraintGuide_percent="1" />
 
         <WebView
-            android:id="@+id/WebSiteView"
+            android:id="@+id/web_site_view_element"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/buttonClose"
+            app:layout_constraintBottom_toTopOf="@+id/close_map_or_web_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/centralLine"
             app:layout_constraintTop_toTopOf="parent">
-
         </WebView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/AdressMapViewLayout"
+            android:id="@+id/map_view_wrapper"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/WebSiteView"
-            app:layout_constraintEnd_toEndOf="@+id/WebSiteView"
-            app:layout_constraintStart_toEndOf="@+id/buttonEmail"
-            app:layout_constraintTop_toTopOf="@+id/WebSiteView">
+            app:layout_constraintBottom_toBottomOf="@+id/web_site_view_element"
+            app:layout_constraintEnd_toEndOf="@+id/web_site_view_element"
+            app:layout_constraintStart_toEndOf="@+id/user_email_view_button"
+            app:layout_constraintTop_toTopOf="@+id/web_site_view_element">
 
             <fragment
-                android:id="@+id/AdressMapView"
+                android:id="@+id/map_view_element"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -192,14 +191,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/UserInfo"
+        android:id="@+id/user_info_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Дані користувача"
+        android:text="@string/user_data_screen_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

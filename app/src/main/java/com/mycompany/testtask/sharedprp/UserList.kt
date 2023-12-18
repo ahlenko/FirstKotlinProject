@@ -8,9 +8,6 @@ import com.google.gson.reflect.TypeToken
 import com.mycompany.testtask.data.User
 
 class UserList(context: Context) {
-    private val SHARED_PRF_NAME : String = "UserListPrefs"
-    private val PRF_NAME : String = "userList"
-
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(SHARED_PRF_NAME, Context.MODE_PRIVATE)
 
@@ -55,5 +52,10 @@ class UserList(context: Context) {
         } catch (e: JsonSyntaxException) {
             mutableListOf()
         }
+    }
+
+    companion object{
+        const val SHARED_PRF_NAME : String = "UserListPrefs"
+        const val PRF_NAME : String = "userList"
     }
 }

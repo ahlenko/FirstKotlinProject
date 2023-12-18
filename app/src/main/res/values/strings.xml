@@ -12,4 +12,24 @@
     <string name="email_topic">Тема вашого листа</string>
 
     <string name="my_app_api_key">AIzaSyBLM3d_Jp_DIX8bjMbOzff1XW3yReAnYzo</string>
+    <string name="user_name_sample">Ім\'я Прізвище</string>
+    <string name="user_email_sample">test@testmail.com</string>
+    <string name="info_about_user_sample">Немає інформації про користувача</string>
+    <string name="to_user_info_button_description">Відображення інформації</string>
+    <string name="users_list_title">Користувачі</string>
+    <string name="users_list_is_empty">Список користувачів порожній</string>
+    <string name="chose_a_user_to_show_data">Оберіть користувача для відображення даних</string>
+    <string name="email_title">Email</string>
+    <string name="user_data_screen_title">Дані користувача</string>
+    <string name="phone_title">Телефон</string>
+    <string name="user_address_title">Адреса</string>
+    <string name="website_title">Сайт</string>
+    <string name="user_address_sample">Вулиця, Будинок</string>
+    <string name="website_sample">www.site.com</string>
+    <string name="unshow_text_button">Приховати</string>
+    <string name="back_text_button">Назад</string>
+    <string name="phone_sample">+30645434633</string>
+    <string name="name_title">Name</string>
+    <string name="logo_text">Logo</string>
+    <string name="user_avatar_image_description">Аватар користувача</string>
 </resources>
