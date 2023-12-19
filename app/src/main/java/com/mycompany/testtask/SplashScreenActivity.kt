@@ -19,6 +19,6 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     companion object{
-        const val TIMEOUT_SCREEN:Long = 200
+        const val TIMEOUT_SCREEN:Long = 3000
     }
 }

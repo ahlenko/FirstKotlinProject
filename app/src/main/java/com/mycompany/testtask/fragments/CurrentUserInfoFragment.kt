@@ -15,9 +15,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.mycompany.testtask.R
-import com.mycompany.testtask.data.User
+import com.mycompany.testtask.database.AppDatabase
+import com.mycompany.testtask.database.data.User
 import com.mycompany.testtask.databinding.FragmentUsersInfoBinding
-import com.mycompany.testtask.sharedprp.UserList
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 
 class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
 
@@ -29,9 +31,7 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
 
     private var openViewID : Byte = 0 // 0 - not, 1 - map, 2 - web
 
-    private lateinit var binding : FragmentUsersInfoBinding
-
-    private lateinit var listOfUser : UserList
+    private lateinit var binding: FragmentUsersInfoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +43,6 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listOfUser = UserList(requireActivity().baseContext)
         if (userID == -1) {
             binding.screenContentLayout.visibility  = View.INVISIBLE
             Toast.makeText(requireActivity().baseContext, R.string.prob_user_data_non_avalible, Toast.LENGTH_SHORT).show()
@@ -53,11 +52,17 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
             binding.ifUserNoSelectedTitle.visibility = View.VISIBLE
         } else {
             if (!fragmentTypeIsActivity) binding.backButton.visibility = View.INVISIBLE
-            user = listOfUser.getCurUser(userID)
-            initializeUserInfo()
-            val mapFragment  = SupportMapFragment.newInstance()
-            requireActivity().supportFragmentManager.beginTransaction().add(R.id.map_view_element, mapFragment).commit()
-            mapFragment.getMapAsync(this)
+            val userDAO = AppDatabase.getDatabase(requireActivity().baseContext).userDao()
+
+            GlobalScope.async {
+                user = userDAO.getCurrentUsers(userID+1)
+                initializeUserInfo()
+
+                val mapFragment  = SupportMapFragment.newInstance()
+                requireActivity().supportFragmentManager.beginTransaction().add(R.id.map_view_element, mapFragment).commit()
+                mapFragment.getMapAsync(this@CurrentUserInfoFragment)
+            }
+
         }
         binding.backButton.setOnClickListener { requireActivity().finish() }
     }
@@ -107,7 +112,7 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
             }
             binding.webSiteViewElement.visibility = View.VISIBLE
             binding.closeMapOrWebButton.visibility = View.VISIBLE
-            binding.webSiteViewElement.loadUrl(siteURL)
+            binding.webSiteViewElement.loadUrl(siteURL!!)
         }
 
         binding.showMapButton.setOnClickListener {
@@ -139,10 +144,10 @@ class CurrentUserInfoFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap : GoogleMap) {
-        val lat = user.address.geo.lat.toDouble()
-        val lng = user.address.geo.lng.toDouble()
+        val lat = user.address.geo.lat?.toDouble()
+        val lng = user.address.geo.lng?.toDouble()
         val adr: String = user.address.city + ", " + user.address.street + ", " + user.address.suite
-        googleMap.addMarker(MarkerOptions().position(LatLng(lat, lng)).title(adr))
+        googleMap.addMarker(MarkerOptions().position(LatLng(lat!!, lng!!)).title(adr))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lng), 10f))
     }
 }

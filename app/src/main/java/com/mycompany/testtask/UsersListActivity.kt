@@ -2,6 +2,7 @@ package com.mycompany.testtask
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.icu.number.IntegerWidth
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -17,14 +18,14 @@ class UsersListActivity : AppCompatActivity() {
             this@UsersListActivity,
             CurrentUserInfoActivity::class.java )
         val bundle = Bundle()
-        val userID = v.id - 1
+        val userID = Integer.parseInt(v.tag.toString()) - 1
         bundle.putInt(KEY_USER_ID, userID)
         nextIntent.putExtras(bundle)
         startActivity(nextIntent)
     }
 
     private val buttonShowUserInfo = View.OnClickListener { v ->
-        val userID = v.id - 1
+        val userID = Integer.parseInt(v.tag.toString()) - 1
         val infoFragment = CurrentUserInfoFragment()
         infoFragment.setPrintedUserID(userID-1)
         supportFragmentManager.beginTransaction()
